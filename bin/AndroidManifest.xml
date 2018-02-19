@@ -26,6 +26,10 @@
             android:name=".Frm_Login"
             android:label="@string/title_activity_frm__login" >
         </activity>
+        <activity
+            android:name=".DangkyActivity"
+            android:label="@string/title_activity_dangky" >
+        </activity>
     </application>
 
 </manifest>

@@ -9,7 +9,7 @@
     tools:context="com.example.quan_ly_don_hang.MainActivity" >
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnOpenApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

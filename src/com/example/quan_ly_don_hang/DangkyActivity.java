@@ -12,40 +12,43 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class DangkyActivity extends Activity {
-DBManager dbManager;
-EditText txtUsername;
-EditText txtPassword;
-Button btnSave;
+	DBManager dbManager;
+	EditText txtUsername;
+	EditText txtPassword;
+	Button btnSave;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dangky);
-		dbManager = new DBManager(this);		
-		txtUsername = (EditText)findViewById(R.id.txtUsername);
-		txtPassword = (EditText)findViewById(R.id.txtPassword_User);
-		btnSave = (Button)findViewById(R.id.btnSave_User);
-		
-	btnSave.setOnClickListener(new View.OnClickListener() {
-		
-		@Override
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
-			Users users = createUser();
-			if (users!=null){
-				dbManager.adduser(users);
-				
+		dbManager = new DBManager(this);
+		txtUsername = (EditText) findViewById(R.id.txtUsername_User);
+		txtPassword = (EditText) findViewById(R.id.txtPassword_User);
+		btnSave = (Button) findViewById(R.id.btnLogin);
+
+		btnSave.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Users users = createUser();
+				if (users != null) {
+					dbManager.adduser(users);
+
+				}
 			}
-		}
-	});
-	
+		});
+
 	}
-	private Users createUser(){
-		String name = txtUsername.getText().toString();
-		String password = txtPassword.getText().toString();
-		
+
+	private Users createUser() {
+		String name = txtUsername.getText().toString().trim();
+		String password = txtPassword.getText().toString().trim();
+
 		Users users = new Users(name, password);
 		return users;
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

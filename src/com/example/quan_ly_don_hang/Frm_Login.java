@@ -1,5 +1,7 @@
 package com.example.quan_ly_don_hang;
 
+import com.example.quan_ly_don_hang.data.DBManager;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,22 +9,51 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class Frm_Login extends Activity {
 	Button btnDangky;
+	Button btnDangnhap;
+	EditText edtpass;
+	EditText edtuser;
+	DBManager dbmanager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_frm__login);
-		btnDangky = (Button)findViewById(R.id.btnRegister);
+		dbmanager = new DBManager(this);
+		btnDangky = (Button) findViewById(R.id.btnRegister);
+		btnDangnhap = (Button) findViewById(R.id.btnLogin);
+		edtuser = (EditText) findViewById(R.id.txtUsername_Login);
+		edtpass = (EditText) findViewById(R.id.txtPassword_Login);
 		btnDangky.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-			Intent i = new Intent(getApplicationContext(), DangkyActivity.class);
-			startActivity(i);
+				Intent i = new Intent(getApplicationContext(),
+						DangkyActivity.class);
+				startActivity(i);
+			}
+		});
+		btnDangnhap.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				String tk = edtuser.getText().toString().trim();
+				String mk = edtpass.getText().toString().trim();
+				if (dbmanager.checklogin(tk, mk) == true) {
+					Toast.makeText(getApplicationContext(),
+							"Dang nhap thanh cong", Toast.LENGTH_LONG).show();
+				} else {
+					Toast.makeText(getApplicationContext(),
+							"Tai khoan hoac mat khau khong dung",
+							Toast.LENGTH_LONG).show();
+				}
+
 			}
 		});
 	}

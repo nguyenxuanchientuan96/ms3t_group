@@ -8,12 +8,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.quan_ly_don_hang.MainActivity" >
 
-    <Button
-        android:id="@+id/btnOpenApp"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="83dp"
+        android:text="CHÀO MỪNG ĐẾN VỚI ỨNG DỤNG QUẢN LÝ ĐƠN HÀNG MS3T" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
         android:layout_centerVertical="true"
-        android:text="Vào phần mềm" />
+        android:layout_marginLeft="38dp" />
 
 </RelativeLayout>

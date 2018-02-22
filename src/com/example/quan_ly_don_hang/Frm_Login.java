@@ -46,11 +46,13 @@ public class Frm_Login extends Activity {
 				String tk = edtuser.getText().toString().trim();
 				String mk = edtpass.getText().toString().trim();
 				if (dbmanager.checklogin(tk, mk) == true) {
+					Intent i = new Intent(getApplicationContext(), Trangquanly.class);
+					startActivity(i);
 					Toast.makeText(getApplicationContext(),
-							"Dang nhap thanh cong", Toast.LENGTH_LONG).show();
+							"Đăng nhập thành công", Toast.LENGTH_LONG).show();
 				} else {
 					Toast.makeText(getApplicationContext(),
-							"Tai khoan hoac mat khau khong dung",
+							"Tài khoản hoặc mật khẩu không đúng, hãy kiểm tra lại.",
 							Toast.LENGTH_LONG).show();
 				}
 

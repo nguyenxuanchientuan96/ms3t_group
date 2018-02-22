@@ -30,6 +30,14 @@
             android:name=".DangkyActivity"
             android:label="@string/title_activity_dangky" >
         </activity>
+        <activity
+            android:name=".Trangquanly"
+            android:label="@string/title_activity_trangquanly" >
+        </activity>
+        <activity
+            android:name=".MatHang"
+            android:label="@string/title_activity_mat_hang" >
+        </activity>
     </application>
 
 </manifest>

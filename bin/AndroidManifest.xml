@@ -38,6 +38,10 @@
             android:name=".MatHang"
             android:label="@string/title_activity_mat_hang" >
         </activity>
+        <activity
+            android:name=".SanPhamActivity"
+            android:label="@string/title_activity_san_pham" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,35 +1,22 @@
 package com.example.quan_ly_don_hang;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-public class Trangquanly extends Activity {
-Button btnMathang;
+public class SanPhamActivity extends Activity {
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_trangquanly);
-		btnMathang = (Button)findViewById(R.id.btnCall_Mathang);
-		btnMathang.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent i = new Intent(getApplicationContext(), MatHang.class);
-				startActivity(i);
-			}
-		});
+		setContentView(R.layout.activity_san_pham);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.trangquanly, menu);
+		getMenuInflater().inflate(R.menu.san_pham, menu);
 		return true;
 	}
 

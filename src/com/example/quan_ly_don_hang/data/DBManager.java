@@ -12,17 +12,46 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBManager extends SQLiteOpenHelper {
 
-	private static final String DATABASE_NAME = "user_manager";
-	private static final String TABLE_NAME = "user";
+	private static final String DATABASE_NAME = "QUANLYDONHANG";
+	private static final String TABLE_USER = "user";
+	private static final String TABLE_SANPHAM = "SanPham";
+	private static final String TABLE_DANHMUC = "DanhMuc";
+	private static final String TABLE_GIAMGIA = "GiamGia";
+	// Các cột chung
 	private static final String ID = "id";
+	// Các cột bảng user
 	private static final String USER_NAME = "username";
 	private static final String PASSWORD = "password";
 	private static final String PERMISSION = "permission";
+	// Các cột bảng danh mục
+	private static final String TEN_DANHMUC = "Tendanhmuc";
+
+	// Các cột bảng Giảm giá
+	private static final String MA_GIAM_GIA = "Magiamgia";
+	private static final String GIA_TRI = "Giatri";
+	// Các cột bảng sản phẩm
+	private static final String TEN_SANPHAM = "Tensanpham";
+	private static final String DANH_MUC = "Danhmuc";
+	private static final String SO_LUONG = "Soluong";
+	private static final String GIA_BAN = "Giaban";
+	private static final String ANH = "Anh";
+//Một số thứ linh tinh
 	private static int VERSION = 1;
 	private Context context;
-	private String SQLQuery = "CREATE TABLE " + TABLE_NAME + " (" + ID
-			+ " integer primary key, " + USER_NAME + " TEXT, " + PASSWORD
-			+ " TEXT, " + PERMISSION + " integer)";
+	//Các câu lệnh tạo bảng
+	private String SQLQuery_CREATE_TBLUSER = "CREATE TABLE " + TABLE_USER
+			+ " (" + ID + " integer primary key, " + USER_NAME + " TEXT, "
+			+ PASSWORD + " TEXT, " + PERMISSION + " integer)";
+	private String SQLQuery_CREATE_TBLSANPHAM = "CREATE TABLE " + TABLE_SANPHAM + " ("
+			+ ID + " integer primary key, " + TEN_SANPHAM + " TEXT, "
+			+DANH_MUC+ " TEXT, " +SO_LUONG+ " integer, " +GIA_BAN+ " integer, " +ANH+ " TEXT)";
+	private String SQLQuery_CREATE_GIAMGIA = "CREATE TABLE " + TABLE_GIAMGIA
+			+ " (" + ID + " integer primary key, " + MA_GIAM_GIA + " TEXT, "
+			+ GIA_TRI + " integer)";
+	private String SQLQuery_CREATE_DANHMUC = "CREATE TABLE " + TABLE_DANHMUC
+			+ " (" + ID + " integer primary key, " 
+			+ TEN_DANHMUC + " TEXT)";
+	
 
 	public DBManager(Context context) {
 		super(context, DATABASE_NAME, null, VERSION);
@@ -35,14 +64,20 @@ public class DBManager extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		db.execSQL(SQLQuery);
+		db.execSQL(SQLQuery_CREATE_TBLUSER);
+		db.execSQL(SQLQuery_CREATE_TBLSANPHAM);
+		db.execSQL(SQLQuery_CREATE_GIAMGIA);
+		db.execSQL(SQLQuery_CREATE_DANHMUC);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int arg1, int arg2) {
 		// TODO Auto-generated method stub
-		String query = "DROP TABLE IF EXISTS" + TABLE_NAME;
-		db.execSQL(query);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_DANHMUC);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_GIAMGIA);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_SANPHAM);
+		
 		this.onCreate(db);
 	}
 
@@ -51,13 +86,13 @@ public class DBManager extends SQLiteOpenHelper {
 		ContentValues values = new ContentValues();
 		values.put(USER_NAME, users.getmUsername());
 		values.put(PASSWORD, users.getmPassword());
-		db.insert(TABLE_NAME, null, values);
+		db.insert(TABLE_USER, null, values);
 		db.close();
 	}
 
 	public boolean checklogin(String user, String pass) {
 		db = this.getReadableDatabase();
-		String query = "Select * from " + TABLE_NAME + " where username ='"
+		String query = "Select * from " + TABLE_USER + " where username ='"
 				+ user + "'and password='" + pass + "'";
 		Cursor cursor = db.rawQuery(query, null);
 		if (cursor.getCount() >= 1) {

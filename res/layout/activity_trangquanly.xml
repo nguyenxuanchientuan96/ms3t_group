@@ -9,7 +9,7 @@
     tools:context="com.example.quan_ly_don_hang.Trangquanly" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnCall_Donhang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -18,20 +18,29 @@
         android:text="Đơn hàng" />
 
     <Button
-        android:id="@+id/Button01"
+        android:id="@+id/btnCall_Mathang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
+        android:layout_alignLeft="@+id/btnCall_Donhang"
+        android:layout_below="@+id/btnCall_Donhang"
         android:layout_marginTop="21dp"
         android:text="Mặt hàng" />
 
     <Button
-        android:id="@+id/Button02"
+        android:id="@+id/btnCall_CSKH"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/Button01"
-        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/btnCall_Mathang"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="95dp"
         android:text="Chăm sóc khách hàng" />
+
+    <Button
+        android:id="@+id/btnCall_Hoadon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnCall_CSKH"
+        android:layout_centerVertical="true"
+        android:text="Hóa đơn" />
 
 </RelativeLayout>

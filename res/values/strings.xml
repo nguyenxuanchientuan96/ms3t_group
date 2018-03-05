@@ -8,5 +8,6 @@
     <string name="title_activity_dangky">DangkyActivity</string>
     <string name="title_activity_trangquanly">Trangquanly</string>
     <string name="title_activity_mat_hang">MatHang</string>
+    <string name="title_activity_san_pham">SanPhamActivity</string>
 
 </resources>

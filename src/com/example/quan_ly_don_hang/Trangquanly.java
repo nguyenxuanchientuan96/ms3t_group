@@ -20,7 +20,7 @@ Button btnMathang;
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent i = new Intent(getApplicationContext(), MatHang.class);
+				Intent i = new Intent(getApplicationContext(), SanPhamActivity.class);
 				startActivity(i);
 			}
 		});

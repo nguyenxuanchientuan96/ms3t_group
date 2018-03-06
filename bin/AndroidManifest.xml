@@ -42,6 +42,30 @@
             android:name=".SanPhamActivity"
             android:label="@string/title_activity_san_pham" >
         </activity>
+        <activity
+            android:name=".QLSanPhamActivity"
+            android:label="@string/title_activity_qlsan_pham" >
+        </activity>
+        <activity
+            android:name=".ThemHangActivity"
+            android:label="@string/title_activity_them_hang" >
+        </activity>
+        <activity
+            android:name=".DanhMucActivity"
+            android:label="@string/title_activity_danh_muc" >
+        </activity>
+        <activity
+            android:name=".ThemDanhMucActivity"
+            android:label="@string/title_activity_them_danh_muc" >
+        </activity>
+        <activity
+            android:name=".ListView_GiamGiaActivity"
+            android:label="@string/title_activity_list_view__giam_gia" >
+        </activity>
+        <activity
+            android:name=".Them_giam_giaActivity"
+            android:label="@string/title_activity_them_giam_gia" >
+        </activity>
     </application>
 
 </manifest>

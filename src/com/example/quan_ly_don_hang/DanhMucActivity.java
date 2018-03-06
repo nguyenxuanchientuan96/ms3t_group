@@ -7,30 +7,32 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
-public class SanPhamActivity extends Activity {
-	Button btnDanhMuc;
-
+public class DanhMucActivity extends Activity {
+	
+ImageButton btnThemDM;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_san_pham);
-		btnDanhMuc = (Button)findViewById(R.id.btnDanhMuc_SanPham);
-		btnDanhMuc.setOnClickListener(new View.OnClickListener() {
+		setContentView(R.layout.activity_danh_muc);
+		btnThemDM = (ImageButton)findViewById(R.id.imgbtnThemDM_DM);
+		btnThemDM.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent i = new Intent(getApplicationContext(), DanhMucActivity.class);
+				Intent i  = new Intent(getApplicationContext(), ThemDanhMucActivity.class);
 				startActivity(i);
 			}
 		});
+	
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.san_pham, menu);
+		getMenuInflater().inflate(R.menu.danh_muc, menu);
 		return true;
 	}
 

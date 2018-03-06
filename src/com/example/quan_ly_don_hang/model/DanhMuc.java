@@ -5,6 +5,9 @@ private int mMaDM;
 private String mTenDM;
 
 
+public DanhMuc() {
+	super();
+}
 public DanhMuc(String mTenDM) {
 	super();
 	this.mTenDM = mTenDM;

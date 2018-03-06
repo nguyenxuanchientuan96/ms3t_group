@@ -9,5 +9,11 @@
     <string name="title_activity_trangquanly">Trangquanly</string>
     <string name="title_activity_mat_hang">MatHang</string>
     <string name="title_activity_san_pham">SanPhamActivity</string>
+    <string name="title_activity_qlsan_pham">QLSanPhamActivity</string>
+    <string name="title_activity_them_hang">ThemHangActivity</string>
+    <string name="title_activity_danh_muc">DanhMucActivity</string>
+    <string name="title_activity_them_danh_muc">ThemDanhMucActivity</string>
+    <string name="title_activity_list_view__giam_gia">ListView_GiamGiaActivity</string>
+    <string name="title_activity_them_giam_gia">Them_giam_giaActivity</string>
 
 </resources>

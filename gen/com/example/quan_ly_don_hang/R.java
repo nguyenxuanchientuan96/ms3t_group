@@ -41,14 +41,14 @@ public final class R {
         public static final int editText2=0x7f080011;
         public static final int editText3=0x7f080012;
         public static final int editText4=0x7f08000e;
-        public static final int imgbtnThemDM_DM=0x7f080006;
         public static final int linearLayout1=0x7f080007;
         public static final int linearLayout2=0x7f08000a;
+        public static final int lv_danhmuc=0x7f080006;
         public static final int progressBar1=0x7f08000d;
         public static final int spinner1=0x7f080016;
-        public static final int textView1=0x7f080002;
-        public static final int textView2=0x7f080004;
         public static final int textView3=0x7f08000c;
+        public static final int tv_ID=0x7f080002;
+        public static final int tv_Name=0x7f080004;
         public static final int txtPassword_Login=0x7f080009;
         public static final int txtPassword_User=0x7f080005;
         public static final int txtTenDM_ThemDM=0x7f08000f;
@@ -68,6 +68,7 @@ public final class R {
         public static final int activity_them_giam_gia=0x7f030009;
         public static final int activity_them_hang=0x7f03000a;
         public static final int activity_trangquanly=0x7f03000b;
+        public static final int item_list_danhmuc=0x7f03000c;
     }
     public static final class menu {
         public static final int dangky=0x7f070000;

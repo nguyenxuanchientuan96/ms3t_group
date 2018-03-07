@@ -8,13 +8,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.quan_ly_don_hang.DanhMucActivity" >
 
-    <ImageButton
-        android:id="@+id/imgbtnThemDM_DM"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="87dp"
-        android:layout_marginLeft="110dp"
-        android:src="@drawable/add" />
+    <ListView
+        android:id="@+id/lv_danhmuc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </RelativeLayout>

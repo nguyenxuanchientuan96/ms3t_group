@@ -10,6 +10,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -63,6 +64,7 @@ public class DBManager extends SQLiteOpenHelper {
 	}
 
 	SQLiteDatabase db;
+	DBManager dbmanager;
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
@@ -134,5 +136,12 @@ public class DBManager extends SQLiteOpenHelper {
 		db.close();
 		return listDanhmuc;
 	}
-
+	public DBManager open() throws SQLException{
+		dbmanager = new DBManager(context);
+		db = dbmanager.getWritableDatabase();
+		return this;
+	}
+	public Cursor SELECT_ALL_DANHMUC(){
+		return db.query(TABLE_DANHMUC, null, null, null, null, null, null);
+	}
 }

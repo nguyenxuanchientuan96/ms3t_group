@@ -1,6 +1,14 @@
 package com.example.quan_ly_don_hang;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.quan_ly_don_hang.adapter.DanhMucAdapter;
+import com.example.quan_ly_don_hang.data.DBManager;
+import com.example.quan_ly_don_hang.model.DanhMuc;
+
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,14 +16,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 public class DanhMucActivity extends Activity {
 	
-ImageButton btnThemDM;
+//ImageButton btnThemDM;
+ListView lvDM;
+DanhMucAdapter DMadapter;
+DBManager dbManager;
+List<DanhMuc> danhmuc = new ArrayList<DanhMuc>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_danh_muc);
+		dbManager = new DBManager(this);
+		
+		danhmuc = dbManager.getAllDanhMuc();
+		DMadapter = new DanhMucAdapter(this, R.layout.item_list_danhmuc, danhmuc);
+		lvDM.setAdapter(DMadapter);
+		
+		lvDM = (ListView)findViewById(R.id.lv_danhmuc);
+		/*
 		btnThemDM = (ImageButton)findViewById(R.id.imgbtnThemDM_DM);
 		btnThemDM.setOnClickListener(new View.OnClickListener() {
 			
@@ -26,8 +47,10 @@ ImageButton btnThemDM;
 				startActivity(i);
 			}
 		});
+		*/
 	
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

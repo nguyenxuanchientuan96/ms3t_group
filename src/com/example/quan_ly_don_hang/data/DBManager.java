@@ -23,13 +23,13 @@ public class DBManager extends SQLiteOpenHelper {
 	private static final String TABLE_DANHMUC = "DanhMuc";
 	private static final String TABLE_GIAMGIA = "GiamGia";
 	// Các cột chung
-	private static final String ID = "id";
+	public static final String ID = "_id";
 	// Các cột bảng user
 	private static final String USER_NAME = "username";
 	private static final String PASSWORD = "password";
 	private static final String PERMISSION = "permission";
 	// Các cột bảng danh mục
-	private static final String TEN_DANHMUC = "Tendanhmuc";
+	public static final String TEN_DANHMUC = "Tendanhmuc";
 
 	// Các cột bảng Giảm giá
 	private static final String MA_GIAM_GIA = "Magiamgia";
@@ -120,8 +120,8 @@ public class DBManager extends SQLiteOpenHelper {
 	}
 	public List<DanhMuc> getAllDanhMuc(){
 		List<DanhMuc> listDanhmuc = new ArrayList<DanhMuc>();
-		String selectQuery = "SELECT * FROM " + TABLE_DANHMUC;
-		SQLiteDatabase db = this.getWritableDatabase();
+		String selectQuery = "SELECT * FROM  +TABLE_DANHMUC+;" ;
+		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		if(cursor.moveToFirst()){
 			do {
@@ -141,7 +141,14 @@ public class DBManager extends SQLiteOpenHelper {
 		db = dbmanager.getWritableDatabase();
 		return this;
 	}
+	public void CloseDB(){
+		if (db!=null&&db.isOpen())
+			db.close();
+	}
 	public Cursor SELECT_ALL_DANHMUC(){
-		return db.query(TABLE_DANHMUC, null, null, null, null, null, null);
+		
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT * FROM DanhMuc;", null);
+		return cursor;
 	}
 }

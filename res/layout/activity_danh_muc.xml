@@ -9,8 +9,8 @@
     tools:context="com.example.quan_ly_don_hang.DanhMucActivity" >
 
     <ListView
-        android:id="@+id/lv_danhmuc"
-        android:layout_width="match_parent"
+        android:id="@+id/android:list"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
     </ListView>
 

@@ -10,6 +10,7 @@ import com.example.quan_ly_don_hang.model.DanhMuc;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,25 +18,38 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
-public class DanhMucActivity extends Activity {
+public class DanhMucActivity extends ListActivity {
 	
 //ImageButton btnThemDM;
-ListView lvDM;
-DanhMucAdapter DMadapter;
+
+Cursor cursor;
+SimpleCursorAdapter adapter;
 DBManager dbManager;
-List<DanhMuc> danhmuc = new ArrayList<DanhMuc>();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_danh_muc);
-		dbManager = new DBManager(this);
 		
-		danhmuc = dbManager.getAllDanhMuc();
-		DMadapter = new DanhMucAdapter(this, R.layout.item_list_danhmuc, danhmuc);
-		lvDM.setAdapter(DMadapter);
+		dbManager = new DBManager(DanhMucActivity.this);
+		display();
 		
-		lvDM = (ListView)findViewById(R.id.lv_danhmuc);
+		
+		/*
+		while (cursor.moveToNext()) {
+			String id = cursor.getString(cursor.getColumnIndex(dbManager.ID));
+			if(Integer.parseInt(id)%2==0 ){
+				String name = cursor.getString(cursor.getColumnIndex(dbManager.TEN_DANHMUC));
+			}
+			
+			
+		}
+		*/
+		
+		
+		
 		/*
 		btnThemDM = (ImageButton)findViewById(R.id.imgbtnThemDM_DM);
 		btnThemDM.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +63,16 @@ List<DanhMuc> danhmuc = new ArrayList<DanhMuc>();
 		});
 		*/
 	
+	}
+	public void display(){
+		cursor = dbManager.SELECT_ALL_DANHMUC();
+		
+		String[] from = new String[]{dbManager.TEN_DANHMUC};
+		int[] to  = new int[]{R.id.tv_Name};
+		adapter = new SimpleCursorAdapter(DanhMucActivity.this, R.layout.item_list_danhmuc, cursor, from, to, 0);
+		dbManager.CloseDB();
+		ListView lv = getListView();
+		lv.setAdapter(adapter);
 	}
 	
 

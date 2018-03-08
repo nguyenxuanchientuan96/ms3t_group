@@ -33,30 +33,32 @@ public class DBManager extends SQLiteOpenHelper {
 	public static final String TEN_DANHMUC = "Tendanhmuc";
 
 	// Các cột bảng Giảm giá
-	private static final String MA_GIAM_GIA = "Magiamgia";
-	private static final String GIA_TRI = "Giatri";
+	public static final String MA_GIAM_GIA = "Magiamgia";
+	public static final String GIA_TRI = "Giatri";
 	// Các cột bảng sản phẩm
-	private static final String TEN_SANPHAM = "Tensanpham";
-	private static final String DANH_MUC = "Danhmuc";
-	private static final String SO_LUONG = "Soluong";
-	private static final String GIA_BAN = "Giaban";
-	private static final String ANH = "Anh";
+	public static final String TEN_SANPHAM = "Tensanpham";
+	public static final String DANH_MUC = "Danhmuc";
+	public static final String SO_LUONG = "Soluong";
+	public static final String GIA_BAN = "Giaban";
+	public static final String ANH = "Anh";
 	// Một số thứ linh tinh
 	private static int VERSION = 1;
 	private Context context;
 	// Các câu lệnh tạo bảng
 	private String SQLQuery_CREATE_TBLUSER = "CREATE TABLE " + TABLE_USER
-			+ " (" + ID + " integer primary key, " + USER_NAME + " TEXT UNIQUE, "
-			+ PASSWORD + " TEXT, " + PERMISSION + " integer)";
+			+ " (" + ID + " integer primary key, " + USER_NAME
+			+ " TEXT UNIQUE, " + PASSWORD + " TEXT, " + PERMISSION
+			+ " integer)";
 	private String SQLQuery_CREATE_TBLSANPHAM = "CREATE TABLE " + TABLE_SANPHAM
-			+ " (" + ID + " integer primary key, " + TEN_SANPHAM + " TEXT UNIQUE, "
-			+ DANH_MUC + " TEXT, " + SO_LUONG + " integer, " + GIA_BAN
-			+ " integer, " + ANH + " BLOB)";
+			+ " (" + ID + " integer primary key, " + TEN_SANPHAM
+			+ " TEXT UNIQUE, " + DANH_MUC + " TEXT, " + SO_LUONG + " integer, "
+			+ GIA_BAN + " integer, " + ANH + " BLOB)";
 	private String SQLQuery_CREATE_GIAMGIA = "CREATE TABLE " + TABLE_GIAMGIA
-			+ " (" + ID + " integer primary key, " + MA_GIAM_GIA + " TEXT UNIQUE, "
-			+ GIA_TRI + " integer)";
+			+ " (" + ID + " integer primary key, " + MA_GIAM_GIA
+			+ " TEXT UNIQUE, " + GIA_TRI + " integer)";
 	private String SQLQuery_CREATE_DANHMUC = "CREATE TABLE " + TABLE_DANHMUC
-			+ " (" + ID + " integer primary key, " + TEN_DANHMUC + " TEXT UNIQUE)";
+			+ " (" + ID + " integer primary key, " + TEN_DANHMUC
+			+ " TEXT UNIQUE)";
 
 	public DBManager(Context context) {
 		super(context, DATABASE_NAME, null, VERSION);
@@ -86,7 +88,8 @@ public class DBManager extends SQLiteOpenHelper {
 
 		this.onCreate(db);
 	}
-//hàm tạo tài khoản
+
+	// hàm tạo tài khoản
 	public void adduser(Users users) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
@@ -95,7 +98,8 @@ public class DBManager extends SQLiteOpenHelper {
 		db.insert(TABLE_USER, null, values);
 		db.close();
 	}
-//hàm kiểm tra đăng nhập
+
+	// hàm kiểm tra đăng nhập
 	public boolean checklogin(String user, String pass) {
 		db = this.getReadableDatabase();
 		String query = "Select * from " + TABLE_USER + " where username ='"
@@ -110,60 +114,70 @@ public class DBManager extends SQLiteOpenHelper {
 		return false;
 
 	}
-	//hàm tạo danh mục
-	public void addDanhmuc(DanhMuc dm)
-	{
+
+	// hàm tạo danh mục
+	public void addDanhmuc(DanhMuc dm) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(TEN_DANHMUC, dm.getmTenDM());
 		db.insert(TABLE_DANHMUC, null, values);
 		db.close();
 	}
-	public List<String> getAllDanhMuc(){
+
+	public List<String> getAllDanhMuc() {
 		List<String> listDanhmuc = new ArrayList<String>();
-		String selectQuery = "SELECT * FROM DanhMuc;" ;
+		String selectQuery = "SELECT * FROM DanhMuc;";
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
-		if(cursor.moveToFirst()){
+		if (cursor.moveToFirst()) {
 			do {
 				listDanhmuc.add(cursor.getString(1));
-				
+
 			} while (cursor.moveToNext());
-			
+
 		}
 		cursor.close();
 		db.close();
 		return listDanhmuc;
 	}
-	public DBManager open() throws SQLException{
+
+	public DBManager open() throws SQLException {
 		dbmanager = new DBManager(context);
 		db = dbmanager.getWritableDatabase();
 		return this;
 	}
-	public void CloseDB(){
-		if (db!=null&&db.isOpen())
+
+	public void CloseDB() {
+		if (db != null && db.isOpen())
 			db.close();
 	}
-	//hàm lấy toàn bộ danh mục
-	public Cursor SELECT_ALL_DANHMUC(){
-		
+
+	// hàm lấy toàn bộ danh mục
+	public Cursor SELECT_ALL_DANHMUC() {
+
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM DanhMuc;", null);
 		return cursor;
 	}
-public void ThemSanPham(String Ten, String Danhmuc, int Soluong, int Giaban, byte[] Hinh){
-	SQLiteDatabase db = getWritableDatabase();
-	String sql = "Insert into SanPham values (null, ?, ?, ?, ?, ?)";
-	SQLiteStatement statement = db.compileStatement(sql);
-	statement.clearBindings();
-	statement.bindString(1, Ten);
-	statement.bindString(2, Danhmuc);
-	
-	statement.bindLong(3, Soluong);
-	statement.bindLong(4, Giaban);
-	statement.bindBlob(5, Hinh);
-	statement.executeInsert();
-	
-	
-}
+
+	public Cursor getAllSanPham() {
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT * FROM SanPham;", null);
+		return cursor;
+	}
+
+	public void ThemSanPham(String Ten, String Danhmuc, int Soluong,
+			int Giaban, byte[] Hinh) {
+		SQLiteDatabase db = getWritableDatabase();
+		String sql = "Insert into SanPham values (null, ?, ?, ?, ?, ?)";
+		SQLiteStatement statement = db.compileStatement(sql);
+		statement.clearBindings();
+		statement.bindString(1, Ten);
+		statement.bindString(2, Danhmuc);
+		statement.bindLong(3, Soluong);
+		statement.bindLong(4, Giaban);
+		statement.bindBlob(5, Hinh);
+		statement.executeInsert();
+
+	}
 }

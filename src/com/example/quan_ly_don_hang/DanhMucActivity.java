@@ -22,7 +22,7 @@ import android.widget.SimpleCursorAdapter;
 
 public class DanhMucActivity extends ListActivity {
 	
-//ImageButton btnThemDM;
+ImageButton btnThemDM;
 
 Cursor cursor;
 SimpleCursorAdapter adapter;
@@ -36,8 +36,8 @@ DBManager dbManager;
 		dbManager = new DBManager(DanhMucActivity.this);
 		display();
 		
-				/*
-		btnThemDM = (ImageButton)findViewById(R.id.imgbtnThemDM_DM);
+				
+		btnThemDM = (ImageButton)findViewById(R.id.ibtnAddDM);
 		btnThemDM.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -47,7 +47,7 @@ DBManager dbManager;
 				startActivity(i);
 			}
 		});
-		*/
+		
 	
 	}
 	public void display(){

@@ -32,7 +32,7 @@ public class SanPhamActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent i = new Intent(getApplicationContext(), ThemHangActivity.class);
+				Intent i = new Intent(getApplicationContext(), QLSanPhamActivity.class);
 				startActivity(i);
 			}
 		});

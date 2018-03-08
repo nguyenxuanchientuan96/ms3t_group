@@ -9,9 +9,17 @@
     tools:context="com.example.quan_ly_don_hang.DanhMucActivity" >
 
     <ListView
-        android:id="@+id/android:list"
+        android:id="@+id/lv_SP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
     </ListView>
+
+    <ImageButton
+        android:id="@+id/ibtnAddDM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/lv_SP"
+        android:src="@drawable/add" />
 
 </RelativeLayout>

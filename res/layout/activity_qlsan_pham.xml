@@ -8,21 +8,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.quan_ly_don_hang.QLSanPhamActivity" >
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/lv_SP"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:layout_marginBottom="86dp"
+        android:layout_marginLeft="28dp" >
+    </ListView>
 
     <ImageButton
         android:id="@+id/ibnThemHang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="136dp"
-        android:layout_marginLeft="63dp"
-        android:layout_toRightOf="@+id/linearLayout1"
+        android:layout_alignRight="@+id/lv_SP"
+        android:layout_marginBottom="25dp"
         android:src="@drawable/add" />
 
 </RelativeLayout>

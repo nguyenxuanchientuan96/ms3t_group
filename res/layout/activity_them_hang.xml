@@ -40,7 +40,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/lv_GiaSP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Số lượng" />
@@ -52,7 +52,7 @@
             android:inputType="numberDecimal" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/lv_TenSP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Giá cả" />

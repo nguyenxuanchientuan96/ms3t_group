@@ -29,40 +29,45 @@ public final class R {
         public static final int picture=0x7f020004;
     }
     public static final class id {
-        public static final int TextView01=0x7f08000f;
-        public static final int action_settings=0x7f080022;
-        public static final int btnCall_CSKH=0x7f08001f;
-        public static final int btnCall_Donhang=0x7f08001d;
-        public static final int btnCall_Hoadon=0x7f080020;
-        public static final int btnCall_Mathang=0x7f08001e;
-        public static final int btnDanhMuc_SanPham=0x7f080014;
+        public static final int TextView01=0x7f080011;
+        public static final int action_settings=0x7f080027;
+        public static final int btnCall_CSKH=0x7f080021;
+        public static final int btnCall_Donhang=0x7f08001f;
+        public static final int btnCall_Hoadon=0x7f080022;
+        public static final int btnCall_Mathang=0x7f080020;
+        public static final int btnDanhMuc_SanPham=0x7f080016;
         public static final int btnGiamgia=0x7f080001;
         public static final int btnLogin=0x7f080000;
-        public static final int btnLuu_ThemSP=0x7f08001c;
-        public static final int btnRegister=0x7f08000a;
-        public static final int btnSanPham_SP=0x7f080013;
-        public static final int btnSaveDM=0x7f080015;
-        public static final int editText3=0x7f080011;
-        public static final int editText4=0x7f08000d;
-        public static final int ibnCamera=0x7f080019;
-        public static final int ibnFolder=0x7f08001a;
-        public static final int ibnThemHang=0x7f080012;
-        public static final int imgHinh=0x7f08001b;
-        public static final int linearLayout1=0x7f080006;
-        public static final int linearLayout2=0x7f080009;
-        public static final int progressBar1=0x7f08000c;
-        public static final int spinnerDM=0x7f080016;
-        public static final int textView1=0x7f080017;
-        public static final int textView3=0x7f08000b;
+        public static final int btnLuu_ThemSP=0x7f08001e;
+        public static final int btnRegister=0x7f08000c;
+        public static final int btnSanPham_SP=0x7f080015;
+        public static final int btnSaveDM=0x7f080017;
+        public static final int editText3=0x7f080013;
+        public static final int editText4=0x7f08000f;
+        public static final int ibnCamera=0x7f08001b;
+        public static final int ibnFolder=0x7f08001c;
+        public static final int ibnThemHang=0x7f080014;
+        public static final int ibtnAddDM=0x7f080007;
+        public static final int imgAnhSP=0x7f080024;
+        public static final int imgHinh=0x7f08001d;
+        public static final int linearLayout1=0x7f080008;
+        public static final int linearLayout2=0x7f08000b;
+        public static final int lv_Danhmuc=0x7f080026;
+        public static final int lv_GiaSP=0x7f08000d;
+        public static final int lv_SP=0x7f080006;
+        public static final int lv_Soluong=0x7f080025;
+        public static final int lv_TenSP=0x7f080019;
+        public static final int progressBar1=0x7f08000e;
+        public static final int spinnerDM=0x7f080018;
         public static final int tv_ID=0x7f080002;
-        public static final int tv_Id=0x7f080021;
+        public static final int tv_Id=0x7f080023;
         public static final int tv_Name=0x7f080004;
-        public static final int txtGiaca_ThemSP=0x7f080018;
-        public static final int txtPassword_Login=0x7f080008;
+        public static final int txtGiaca_ThemSP=0x7f08001a;
+        public static final int txtPassword_Login=0x7f08000a;
         public static final int txtPassword_User=0x7f080005;
-        public static final int txtSoluong_ThemSP=0x7f080010;
-        public static final int txtTenSP_ThemSP=0x7f08000e;
-        public static final int txtUsername_Login=0x7f080007;
+        public static final int txtSoluong_ThemSP=0x7f080012;
+        public static final int txtTenSP_ThemSP=0x7f080010;
+        public static final int txtUsername_Login=0x7f080009;
         public static final int txtUsername_User=0x7f080003;
     }
     public static final class layout {
@@ -79,6 +84,7 @@ public final class R {
         public static final int activity_them_hang=0x7f03000a;
         public static final int activity_trangquanly=0x7f03000b;
         public static final int item_list_danhmuc=0x7f03000c;
+        public static final int item_list_sanpham=0x7f03000d;
     }
     public static final class menu {
         public static final int dangky=0x7f070000;

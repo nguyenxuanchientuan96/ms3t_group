@@ -7,14 +7,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class QLSanPhamActivity extends Activity {
+	ImageButton ibtAddnewSP;
 	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_qlsan_pham);
+		ibtAddnewSP = (ImageButton)findViewById(R.id.ibnThemHang);
+		ibtAddnewSP.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(getApplicationContext(), ThemHangActivity.class);
+				startActivity(i);
+			}
+		});
 		
 	}
 

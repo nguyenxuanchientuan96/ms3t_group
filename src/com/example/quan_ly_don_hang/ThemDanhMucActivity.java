@@ -21,7 +21,7 @@ public class ThemDanhMucActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_them_danh_muc);
 		dbManager = new DBManager(this);
-		txtThemDM = (EditText) findViewById(R.id.txtTenDM_ThemDM);
+		txtThemDM = (EditText) findViewById(R.id.txtTenSP_ThemSP);
 		btnLuu = (Button) findViewById(R.id.btnSaveDM);
 		btnLuu.setOnClickListener(new View.OnClickListener() {
 			

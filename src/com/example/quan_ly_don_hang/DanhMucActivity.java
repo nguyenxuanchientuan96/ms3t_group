@@ -36,21 +36,7 @@ DBManager dbManager;
 		dbManager = new DBManager(DanhMucActivity.this);
 		display();
 		
-		
-		/*
-		while (cursor.moveToNext()) {
-			String id = cursor.getString(cursor.getColumnIndex(dbManager.ID));
-			if(Integer.parseInt(id)%2==0 ){
-				String name = cursor.getString(cursor.getColumnIndex(dbManager.TEN_DANHMUC));
-			}
-			
-			
-		}
-		*/
-		
-		
-		
-		/*
+				/*
 		btnThemDM = (ImageButton)findViewById(R.id.imgbtnThemDM_DM);
 		btnThemDM.setOnClickListener(new View.OnClickListener() {
 			
@@ -67,8 +53,8 @@ DBManager dbManager;
 	public void display(){
 		cursor = dbManager.SELECT_ALL_DANHMUC();
 		
-		String[] from = new String[]{dbManager.TEN_DANHMUC};
-		int[] to  = new int[]{R.id.tv_Name};
+		String[] from = new String[]{dbManager.ID,dbManager.TEN_DANHMUC};
+		int[] to  = new int[]{R.id.tv_Id,R.id.tv_Name};
 		adapter = new SimpleCursorAdapter(DanhMucActivity.this, R.layout.item_list_danhmuc, cursor, from, to, 0);
 		dbManager.CloseDB();
 		ListView lv = getListView();

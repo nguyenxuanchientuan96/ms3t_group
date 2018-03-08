@@ -10,18 +10,29 @@ import android.widget.Button;
 
 public class SanPhamActivity extends Activity {
 	Button btnDanhMuc;
+	Button btnSanPham;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_san_pham);
 		btnDanhMuc = (Button)findViewById(R.id.btnDanhMuc_SanPham);
+		btnSanPham = (Button)findViewById(R.id.btnSanPham_SP);
 		btnDanhMuc.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				Intent i = new Intent(getApplicationContext(), DanhMucActivity.class);
+				startActivity(i);
+			}
+		});
+		btnSanPham.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(getApplicationContext(), ThemHangActivity.class);
 				startActivity(i);
 			}
 		});

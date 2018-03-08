@@ -14,6 +14,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 
 public class DBManager extends SQLiteOpenHelper {
 
@@ -50,7 +51,7 @@ public class DBManager extends SQLiteOpenHelper {
 	private String SQLQuery_CREATE_TBLSANPHAM = "CREATE TABLE " + TABLE_SANPHAM
 			+ " (" + ID + " integer primary key, " + TEN_SANPHAM + " TEXT UNIQUE, "
 			+ DANH_MUC + " TEXT, " + SO_LUONG + " integer, " + GIA_BAN
-			+ " integer, " + ANH + " TEXT)";
+			+ " integer, " + ANH + " BLOB)";
 	private String SQLQuery_CREATE_GIAMGIA = "CREATE TABLE " + TABLE_GIAMGIA
 			+ " (" + ID + " integer primary key, " + MA_GIAM_GIA + " TEXT UNIQUE, "
 			+ GIA_TRI + " integer)";
@@ -118,21 +119,19 @@ public class DBManager extends SQLiteOpenHelper {
 		db.insert(TABLE_DANHMUC, null, values);
 		db.close();
 	}
-	public List<DanhMuc> getAllDanhMuc(){
-		List<DanhMuc> listDanhmuc = new ArrayList<DanhMuc>();
-		String selectQuery = "SELECT * FROM  +TABLE_DANHMUC+;" ;
+	public List<String> getAllDanhMuc(){
+		List<String> listDanhmuc = new ArrayList<String>();
+		String selectQuery = "SELECT * FROM DanhMuc;" ;
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		if(cursor.moveToFirst()){
 			do {
-				DanhMuc dm = new DanhMuc();
-				dm.setmMaDM(cursor.getInt(0));
-				dm.setmTenDM(cursor.getString(1));
-				listDanhmuc.add(dm);
+				listDanhmuc.add(cursor.getString(1));
 				
 			} while (cursor.moveToNext());
 			
 		}
+		cursor.close();
 		db.close();
 		return listDanhmuc;
 	}
@@ -145,10 +144,26 @@ public class DBManager extends SQLiteOpenHelper {
 		if (db!=null&&db.isOpen())
 			db.close();
 	}
+	//hàm lấy toàn bộ danh mục
 	public Cursor SELECT_ALL_DANHMUC(){
 		
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM DanhMuc;", null);
 		return cursor;
 	}
+public void ThemSanPham(String Ten, String Danhmuc, int Soluong, int Giaban, byte[] Hinh){
+	SQLiteDatabase db = getWritableDatabase();
+	String sql = "Insert into SanPham values (null, ?, ?, ?, ?, ?)";
+	SQLiteStatement statement = db.compileStatement(sql);
+	statement.clearBindings();
+	statement.bindString(1, Ten);
+	statement.bindString(2, Danhmuc);
+	
+	statement.bindLong(3, Soluong);
+	statement.bindLong(4, Giaban);
+	statement.bindBlob(5, Hinh);
+	statement.executeInsert();
+	
+	
+}
 }

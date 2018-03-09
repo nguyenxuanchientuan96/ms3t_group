@@ -1,6 +1,8 @@
 package com.example.quan_ly_don_hang.data;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.example.quan_ly_don_hang.model.DanhMuc;
@@ -179,5 +181,12 @@ public class DBManager extends SQLiteOpenHelper {
 		statement.bindBlob(5, Hinh);
 		statement.executeInsert();
 
+	}
+	public String ngaythang(){
+		
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String date = df.format(cal.getTime());
+		return date;
 	}
 }

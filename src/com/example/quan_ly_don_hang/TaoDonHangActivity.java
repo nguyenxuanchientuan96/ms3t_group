@@ -34,6 +34,7 @@ public class TaoDonHangActivity extends Activity {
 		lv = (ListView)findViewById(R.id.lv_chonsp);
 		dbmanager = new DBManager(this);
 		display();
+		txttest.setText(dbmanager.ngaythang());
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -42,7 +43,7 @@ public class TaoDonHangActivity extends Activity {
 				TextView textview = (TextView)arg1.findViewById(R.id.lv_GiaSP);
 				int text = Integer.parseInt(textview.getText().toString());
 				tongtien = tongtien + text;				
-				txttest.setText(String.valueOf(tongtien));
+				//txttest.setText(String.valueOf(tongtien));
 			}
 		});
 		

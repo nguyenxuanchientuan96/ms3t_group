@@ -1,6 +1,8 @@
 package com.example.quan_ly_don_hang;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.example.quan_ly_don_hang.adapter.SanPhamAdapter;
 import com.example.quan_ly_don_hang.data.DBManager;
@@ -9,6 +11,7 @@ import com.example.quan_ly_don_hang.model.SanPham;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +19,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TaoDonHangActivity extends Activity {
 	ArrayList<SanPham> arraySP = new ArrayList<SanPham>();
@@ -25,6 +29,8 @@ public class TaoDonHangActivity extends Activity {
 	TextView txttest;
 	ListView lv;
 	Integer tongtien = 0;
+	Integer sosanpham; 
+	int[] slsp;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,22 +38,51 @@ public class TaoDonHangActivity extends Activity {
 		setContentView(R.layout.activity_tao_don_hang);
 		txttest = (TextView)findViewById(R.id.txtTest);
 		lv = (ListView)findViewById(R.id.lv_chonsp);
+		
+		
 		dbmanager = new DBManager(this);
 		display();
-		txttest.setText(dbmanager.ngaythang());
+		sosanpham = lv.getAdapter().getCount();
+		slsp  = new int[sosanpham];
+		//txttest.setText(dbmanager.ngaythang());
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
 				TextView textview = (TextView)arg1.findViewById(R.id.lv_GiaSP);
+				
 				int text = Integer.parseInt(textview.getText().toString());
-				tongtien = tongtien + text;				
-				//txttest.setText(String.valueOf(tongtien));
+				tongtien = tongtien + text;
+				solanchon(arg2);
+				String sl = String.valueOf(slsp[arg2]);
+				//Toast.makeText(getApplicationContext(), sl, Toast.LENGTH_SHORT).show();
+				txttest.setText(String.valueOf(tongtien));
 			}
 		});
+		/*
+		lv.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				TextView textview = (TextView)arg1.findViewById(R.id.lv_Soluong);
+				int text = Integer.parseInt(textview.getText().toString());
+				
+				
+				
+			}
+		});
+		*/
 		
 	}
+	
+	public int[] solanchon (int i){
+		
+		slsp[i]=slsp[i]+1;
+		return slsp;
+	
+} 
 	public void display(){
 		cursor = dbmanager.getAllSanPham();
 		while (cursor.moveToNext()) {
@@ -56,6 +91,7 @@ public class TaoDonHangActivity extends Activity {
 		adapter = new SanPhamAdapter(this, R.layout.item_list_sanpham, arraySP);
 		lv.setAdapter(adapter);
 	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

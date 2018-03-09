@@ -31,7 +31,7 @@ Button btnDonhang;
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-			Intent i = new Intent (getApplicationContext(), ThemDanhMucActivity.class);
+			Intent i = new Intent (getApplicationContext(), TaoDonHangActivity.class);
 			startActivity(i);
 			}
 		});

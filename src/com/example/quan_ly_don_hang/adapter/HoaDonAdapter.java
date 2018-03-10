@@ -21,8 +21,7 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> {
 	}
 @Override
 public View getView(int position, View convertView, ViewGroup parent) {
-	// TODO Auto-generated method stub
-	
+	// TODO Auto-generated method stub	
 	View view = convertView;
 	if (view==null){
 		LayoutInflater inflater = LayoutInflater.from(getContext());

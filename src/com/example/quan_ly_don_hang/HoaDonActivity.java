@@ -36,7 +36,8 @@ public void display(){
 	while (cursor.moveToNext()){
 		arrayHoadon.add(new HoaDon(cursor.getInt(0), cursor.getString(1), cursor.getInt(2)));
 	}
-adapter = new HoaDonAdapter(this, R.layout.item_list_hoadon, arrayHoadon);		
+adapter = new HoaDonAdapter(this, R.layout.item_list_hoadon, arrayHoadon);
+adapter.notifyDataSetChanged();
 	lv.setAdapter(adapter);
 }
 	@Override

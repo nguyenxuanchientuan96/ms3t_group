@@ -73,14 +73,14 @@ public final class R {
         public static final int textView3=0x7f080034;
         public static final int tv_Gia_themhang=0x7f080027;
         public static final int tv_ID=0x7f080016;
-        public static final int tv_Id=0x7f080031;
+        public static final int tv_Idd=0x7f080031;
         public static final int tv_danhmuc_themhang=0x7f080024;
         public static final int tv_giasp_list=0x7f08003d;
         public static final int tv_idhd=0x7f080035;
         public static final int tv_ngayhd=0x7f080037;
         public static final int tv_soluong_themhang=0x7f080026;
         public static final int tv_ten_themhang=0x7f080023;
-        public static final int tv_tendm=0x7f080032;
+        public static final int tv_tend=0x7f080032;
         public static final int tv_tensp_list=0x7f08003b;
         public static final int tv_thanhtienhd=0x7f080039;
         public static final int txtGiaca_ThemSP=0x7f080028;

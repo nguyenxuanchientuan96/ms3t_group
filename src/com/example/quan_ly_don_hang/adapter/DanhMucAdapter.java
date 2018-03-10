@@ -35,9 +35,9 @@ public class DanhMucAdapter extends ArrayAdapter<DanhMuc> {
 					parent, false);
 			viewholder = new ViewHolder();
 			viewholder.tvID = (TextView) convertView
-					.findViewById(com.example.quan_ly_don_hang.R.id.tv_ID);
+					.findViewById(com.example.quan_ly_don_hang.R.id.tv_Id);
 			viewholder.tvName = (TextView) convertView
-					.findViewById(com.example.quan_ly_don_hang.R.id.tv_Name);
+					.findViewById(com.example.quan_ly_don_hang.R.id.tv_tendm);
 			convertView.setTag(viewholder);
 		} else {
 			viewholder = (ViewHolder) convertView.getTag();

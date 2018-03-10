@@ -9,6 +9,8 @@ import com.example.quan_ly_don_hang.data.DBManager;
 import com.example.quan_ly_don_hang.model.SanPham;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
@@ -34,32 +36,33 @@ public class TaoDonHangActivity extends Activity {
 	Integer sosanpham;
 	String ngay;
 	int[] slsp;
-	String [] tenspchon;
+	String[] tenspchon;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tao_don_hang);
-		txttest = (TextView)findViewById(R.id.txtTest);
-		Purchase = (Button)findViewById(R.id.btnThanhtoan);
-		lv = (ListView)findViewById(R.id.lv_chonsp);
-		
-		
+		txttest = (TextView) findViewById(R.id.txtTest);
+		Purchase = (Button) findViewById(R.id.btnThanhtoan);
+		lv = (ListView) findViewById(R.id.lv_chonsp);
+
 		dbmanager = new DBManager(this);
 		display();
 		sosanpham = lv.getAdapter().getCount();
-		slsp  = new int[sosanpham];
-		tenspchon = new String [sosanpham];
+		slsp = new int[sosanpham];
+		tenspchon = new String[sosanpham];
 		ngay = dbmanager.ngaythang();
-		//txttest.setText(dbmanager.ngaythang());
+		// txttest.setText(dbmanager.ngaythang());
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				TextView textview = (TextView)arg1.findViewById(R.id.lv_GiaSP);
-				TextView textview2= (TextView)arg1.findViewById(R.id.lv_Soluong);
-				TextView textview3= (TextView)arg1.findViewById(R.id.lv_TenSP);
+				TextView textview = (TextView) arg1.findViewById(R.id.tv_giasp_list);
+				TextView textview2 = (TextView) arg1
+						.findViewById(R.id.lv_Soluong);
+				TextView textview3 = (TextView) arg1
+						.findViewById(R.id.tv_tensp_list);
 				String ten = textview3.getText().toString().trim();
 				int text = Integer.parseInt(textview.getText().toString());
 				int text2 = Integer.parseInt(textview2.getText().toString());
@@ -68,45 +71,60 @@ public class TaoDonHangActivity extends Activity {
 				tenchon(arg2, ten);
 				text2 = text2 - slsp[arg2];
 				String sl = String.valueOf(slsp[arg2]);
-				Toast.makeText(getApplicationContext(), sl, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), sl, Toast.LENGTH_SHORT)
+						.show();
 				txttest.setText(String.valueOf(tongtien));
 				textview2.setText(String.valueOf(text2));
 			}
 		});
-Purchase.setOnClickListener(new View.OnClickListener() {
-	
-	@Override
-	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
-	
-	dbmanager.ThemHoaDon(ngay, tongtien);
-	for (int i=0;i<sosanpham;i++){
-	dbmanager.UpdateSanPham(slsp[i], tenspchon[i]);
+		Purchase.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+			AlertDialog.Builder dialog =	new AlertDialog.Builder(TaoDonHangActivity.this);
+			dialog.setTitle("THANH TOÁN?");
+			dialog.setMessage("Bạn thật sự muốn thanh toán?");
+				dialog.setPositiveButton("Thanh toán", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface arg0, int arg1) {
+						// TODO Auto-generated method stub
+						dbmanager.ThemHoaDon(ngay, tongtien);
+						for (int i = 0; i < sosanpham; i++) {
+							dbmanager.UpdateSanPham(slsp[i], tenspchon[i]);
+							
+						}
+					}
+				}).setNegativeButton("Hủy", null).show();
+				
+			}
+		});
+
 	}
-	}
-});
-		
-		
-	}
-	public String[] tenchon (int i, String ten) {
-		tenspchon[i]=ten;
+
+	public String[] tenchon(int i, String ten) {
+		tenspchon[i] = ten;
 		return tenspchon;
 	}
-	public int[] solanchon (int i){
-		
-		slsp[i]=slsp[i]+1;
+
+	public int[] solanchon(int i) {
+
+		slsp[i] = slsp[i] + 1;
 		return slsp;
-	
-} 
-	public void display(){
+
+	}
+
+	public void display() {
 		cursor = dbmanager.getAllSanPham();
 		while (cursor.moveToNext()) {
-			arraySP.add(new SanPham(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getInt(3), cursor.getInt(4), cursor.getBlob(5)));
+			arraySP.add(new SanPham(cursor.getInt(0), cursor.getString(1),
+					cursor.getString(2), cursor.getInt(3), cursor.getInt(4),
+					cursor.getBlob(5)));
 		}
 		adapter = new SanPhamAdapter(this, R.layout.item_list_sanpham, arraySP);
 		lv.setAdapter(adapter);
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

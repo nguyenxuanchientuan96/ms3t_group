@@ -1,6 +1,8 @@
 package com.example.quan_ly_don_hang.model;
 
-public class SanPham {
+import java.io.Serializable;
+
+public class SanPham implements Serializable{
 	private int mMaSP;
 	private String mTenSP;
 	private String mDanhMuc;

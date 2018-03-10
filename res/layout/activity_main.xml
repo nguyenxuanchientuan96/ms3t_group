@@ -9,7 +9,6 @@
     tools:context="com.example.quan_ly_don_hang.MainActivity" >
 
     <TextView
-        android:id="@+id/tv_ID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"

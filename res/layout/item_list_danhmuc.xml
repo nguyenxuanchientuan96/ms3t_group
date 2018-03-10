@@ -18,10 +18,11 @@
             android:text="1" />
 
         <TextView
-            android:id="@+id/tv_Name"
+            android:id="@+id/tv_tendm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tên danh mục" />
+
     </LinearLayout>
 
 </RelativeLayout>

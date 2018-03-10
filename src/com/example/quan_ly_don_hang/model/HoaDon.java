@@ -1,5 +1,7 @@
 package com.example.quan_ly_don_hang.model;
 
+import java.io.Serializable;
+
 public class HoaDon {
 private int mMaHD;
 private String mNgay;

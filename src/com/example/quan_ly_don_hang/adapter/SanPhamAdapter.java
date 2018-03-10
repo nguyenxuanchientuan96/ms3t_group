@@ -33,9 +33,9 @@ public View getView(int position, View convertView, ViewGroup parent) {
 	SanPham sanpham = getItem(position);
 	if (sanpham!=null){
 		ImageView imgHinhdaidien = (ImageView)view.findViewById(R.id.imgAnhSP);
-		TextView txtTen = (TextView)view.findViewById(R.id.lv_TenSP);
+		TextView txtTen = (TextView)view.findViewById(R.id.tv_tensp_list);
 		TextView txtSoluong = (TextView)view.findViewById(R.id.lv_Soluong);
-		TextView txtGia = (TextView)view.findViewById(R.id.lv_GiaSP);
+		TextView txtGia = (TextView)view.findViewById(R.id.tv_giasp_list);
 		TextView txtDanhmuc = (TextView)view.findViewById(R.id.lv_Danhmuc);
 		byte[] hinhAnh = sanpham.getmAnh();
 		Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh, 0, hinhAnh.length);

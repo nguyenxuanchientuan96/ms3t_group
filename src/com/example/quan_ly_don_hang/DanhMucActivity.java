@@ -54,7 +54,7 @@ DBManager dbManager;
 		cursor = dbManager.SELECT_ALL_DANHMUC();
 		
 		String[] from = new String[]{dbManager.ID,dbManager.TEN_DANHMUC};
-		int[] to  = new int[]{R.id.tv_Id,R.id.tv_Name};
+		int[] to  = new int[]{R.id.tv_Id,R.id.tv_tendm};
 		adapter = new SimpleCursorAdapter(DanhMucActivity.this, R.layout.item_list_danhmuc, cursor, from, to, 0);
 		dbManager.CloseDB();
 		ListView lv = getListView();

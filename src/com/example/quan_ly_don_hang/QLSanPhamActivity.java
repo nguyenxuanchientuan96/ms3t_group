@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -36,6 +38,16 @@ public class QLSanPhamActivity extends Activity {
 		ibtAddnewSP = (ImageButton)findViewById(R.id.ibnThemHang);
 		dbmanager = new DBManager(this);
 		displaySP();
+		lv.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(QLSanPhamActivity.this, EditSPActivity.class);
+				intent.putExtra("Edit", adapter.getItem(arg2));
+				startActivity(intent);
+			}
+		});
 		ibtAddnewSP.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

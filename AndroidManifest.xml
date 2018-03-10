@@ -76,6 +76,10 @@
             android:name=".HoaDonActivity"
             android:label="@string/title_activity_hoa_don" >
         </activity>
+        <activity
+            android:name=".EditSPActivity"
+            android:label="@string/title_activity_edit_sp" >
+        </activity>
     </application>
 
 </manifest>

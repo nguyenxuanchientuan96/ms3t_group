@@ -180,7 +180,11 @@ public class DBManager extends SQLiteOpenHelper {
 		Cursor cursor = db.rawQuery("SELECT * FROM SanPham;", null);
 		return cursor;
 	}
-
+	public Cursor getAllHoaDon() {
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT * FROM HoaDon;", null);
+		return cursor;
+	}
 	public void ThemSanPham(String Ten, String Danhmuc, int Soluong,
 			int Giaban, byte[] Hinh) {
 		SQLiteDatabase db = getWritableDatabase();

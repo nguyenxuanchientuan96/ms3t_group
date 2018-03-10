@@ -16,5 +16,6 @@
     <string name="title_activity_list_view__giam_gia">ListView_GiamGiaActivity</string>
     <string name="title_activity_them_giam_gia">Them_giam_giaActivity</string>
     <string name="title_activity_tao_don_hang">TaoDonHangActivity</string>
+    <string name="title_activity_hoa_don">HoaDonActivity</string>
 
 </resources>

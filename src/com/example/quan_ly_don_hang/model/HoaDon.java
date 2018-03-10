@@ -9,6 +9,20 @@ public int getmMaHD() {
 	
 	
 }
+public HoaDon() {
+	super();
+}
+public HoaDon(String mNgay, int mThanhtien) {
+	super();
+	this.mNgay = mNgay;
+	this.mThanhtien = mThanhtien;
+}
+public HoaDon(int mMaHD, String mNgay, int mThanhtien) {
+	super();
+	this.mMaHD = mMaHD;
+	this.mNgay = mNgay;
+	this.mThanhtien = mThanhtien;
+}
 public void setmMaHD(int mMaHD) {
 	this.mMaHD = mMaHD;
 }

@@ -72,6 +72,10 @@
             android:name=".TaoDonHangActivity"
             android:label="@string/title_activity_tao_don_hang" >
         </activity>
+        <activity
+            android:name=".HoaDonActivity"
+            android:label="@string/title_activity_hoa_don" >
+        </activity>
     </application>
 
 </manifest>

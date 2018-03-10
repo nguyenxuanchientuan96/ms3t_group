@@ -11,12 +11,14 @@ import android.widget.Button;
 public class Trangquanly extends Activity {
 Button btnMathang;
 Button btnDonhang;
+Button btnHoadon;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trangquanly);
 		btnDonhang = (Button)findViewById(R.id.btnCall_Donhang);
 		btnMathang = (Button)findViewById(R.id.btnCall_Mathang);
+		btnHoadon = (Button)findViewById(R.id.btnCall_Hoadon);
 		btnMathang.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -33,6 +35,15 @@ Button btnDonhang;
 				// TODO Auto-generated method stub
 			Intent i = new Intent (getApplicationContext(), TaoDonHangActivity.class);
 			startActivity(i);
+			}
+		});
+		btnHoadon.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent (getApplicationContext(), HoaDonActivity.class);
+				startActivity(i);
 			}
 		});
 	}

@@ -42,7 +42,7 @@ public final class R {
         public static final int btnRegister=0x7f08000c;
         public static final int btnSanPham_SP=0x7f080015;
         public static final int btnSaveDM=0x7f08001a;
-        public static final int btnThanhtoan=0x7f080017;
+        public static final int btnThanhtoan=0x7f080018;
         public static final int editText3=0x7f080013;
         public static final int editText4=0x7f08000f;
         public static final int ibnCamera=0x7f08001e;
@@ -69,7 +69,7 @@ public final class R {
         public static final int txtPassword_User=0x7f080005;
         public static final int txtSoluong_ThemSP=0x7f080012;
         public static final int txtTenSP_ThemSP=0x7f080010;
-        public static final int txtTest=0x7f080018;
+        public static final int txtTest=0x7f080017;
         public static final int txtUsername_Login=0x7f080009;
         public static final int txtUsername_User=0x7f080003;
     }

@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,11 +26,13 @@ public class TaoDonHangActivity extends Activity {
 	ArrayList<SanPham> arraySP = new ArrayList<SanPham>();
 	SanPhamAdapter adapter;
 	Cursor cursor;
+	Button Purchase;
 	DBManager dbmanager;
 	TextView txttest;
 	ListView lv;
 	Integer tongtien = 0;
-	Integer sosanpham; 
+	Integer sosanpham;
+	String ngay;
 	int[] slsp;
 
 	@Override
@@ -37,6 +40,7 @@ public class TaoDonHangActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tao_don_hang);
 		txttest = (TextView)findViewById(R.id.txtTest);
+		Purchase = (Button)findViewById(R.id.btnThanhtoan);
 		lv = (ListView)findViewById(R.id.lv_chonsp);
 		
 		
@@ -44,6 +48,7 @@ public class TaoDonHangActivity extends Activity {
 		display();
 		sosanpham = lv.getAdapter().getCount();
 		slsp  = new int[sosanpham];
+		ngay = dbmanager.ngaythang();
 		//txttest.setText(dbmanager.ngaythang());
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -51,29 +56,28 @@ public class TaoDonHangActivity extends Activity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				TextView textview = (TextView)arg1.findViewById(R.id.lv_GiaSP);
-				
+				TextView textview2= (TextView)arg1.findViewById(R.id.lv_Soluong);
 				int text = Integer.parseInt(textview.getText().toString());
+				int text2 = Integer.parseInt(textview2.getText().toString());
 				tongtien = tongtien + text;
 				solanchon(arg2);
+				text2 = text2 - slsp[arg2];
 				String sl = String.valueOf(slsp[arg2]);
-				//Toast.makeText(getApplicationContext(), sl, Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), sl, Toast.LENGTH_SHORT).show();
 				txttest.setText(String.valueOf(tongtien));
+				textview2.setText(String.valueOf(text2));
 			}
 		});
-		/*
-		lv.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				// TODO Auto-generated method stub
-				TextView textview = (TextView)arg1.findViewById(R.id.lv_Soluong);
-				int text = Integer.parseInt(textview.getText().toString());
-				
-				
-				
-			}
-		});
-		*/
+Purchase.setOnClickListener(new View.OnClickListener() {
+	
+	@Override
+	public void onClick(View arg0) {
+		// TODO Auto-generated method stub
+	
+	dbmanager.ThemHoaDon(ngay, tongtien);
+	}
+});
+		
 		
 	}
 	

@@ -25,6 +25,7 @@ public class DBManager extends SQLiteOpenHelper {
 	private static final String TABLE_SANPHAM = "SanPham";
 	private static final String TABLE_DANHMUC = "DanhMuc";
 	private static final String TABLE_GIAMGIA = "GiamGia";
+	private static final String TABLE_HOADON = "HoaDon";
 	// Các cột chung
 	public static final String ID = "_id";
 	// Các cột bảng user
@@ -43,6 +44,12 @@ public class DBManager extends SQLiteOpenHelper {
 	public static final String SO_LUONG = "Soluong";
 	public static final String GIA_BAN = "Giaban";
 	public static final String ANH = "Anh";
+	
+	//Cac cot hoa don
+	public static final String NGAY = "Ngay";
+	public static final String TONGTIEN = "Tongtien";
+	
+	
 	// Một số thứ linh tinh
 	private static int VERSION = 1;
 	private Context context;
@@ -61,6 +68,9 @@ public class DBManager extends SQLiteOpenHelper {
 	private String SQLQuery_CREATE_DANHMUC = "CREATE TABLE " + TABLE_DANHMUC
 			+ " (" + ID + " integer primary key, " + TEN_DANHMUC
 			+ " TEXT UNIQUE)";
+	private String SQLQuery_CREATE_HOADON = "CREATE TABLE " + TABLE_HOADON
+			+ " (" + ID + "  integer primary key," + NGAY
+			+ " TEXT , " + TONGTIEN + " integer)";
 
 	public DBManager(Context context) {
 		super(context, DATABASE_NAME, null, VERSION);
@@ -78,6 +88,8 @@ public class DBManager extends SQLiteOpenHelper {
 		db.execSQL(SQLQuery_CREATE_TBLSANPHAM);
 		db.execSQL(SQLQuery_CREATE_GIAMGIA);
 		db.execSQL(SQLQuery_CREATE_DANHMUC);
+		db.execSQL(SQLQuery_CREATE_HOADON);
+		
 	}
 
 	@Override
@@ -87,6 +99,7 @@ public class DBManager extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_DANHMUC);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_GIAMGIA);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_SANPHAM);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_HOADON);
 
 		this.onCreate(db);
 	}
@@ -180,7 +193,27 @@ public class DBManager extends SQLiteOpenHelper {
 		statement.bindLong(4, Giaban);
 		statement.bindBlob(5, Hinh);
 		statement.executeInsert();
-
+db.close();
+	}
+	public void ThemHoaDon (String ngaythang, int tongtien){
+		SQLiteDatabase db = getWritableDatabase();
+		String sql = "Insert into HoaDon values (null, ?, ?)";
+		SQLiteStatement statement = db.compileStatement(sql);
+		statement.clearBindings();
+		statement.bindString(1, ngaythang);
+		statement.bindLong(2, tongtien);
+		statement.executeInsert();
+		db.close();
+	}
+	public void UpdateSanPham(int Soluong, String Tensp){
+		SQLiteDatabase db = getWritableDatabase();
+		String sql  = "UPDATE SanPham SET Soluong=? Where Tensanpham =?";
+		SQLiteStatement statement = db.compileStatement(sql);
+		statement.clearBindings();
+		statement.bindLong(1, Soluong);
+		statement.bindString(2, Tensp);
+		statement.execute();
+		db.close();
 	}
 	public String ngaythang(){
 		

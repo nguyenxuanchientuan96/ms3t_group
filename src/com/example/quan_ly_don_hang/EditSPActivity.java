@@ -1,14 +1,28 @@
 package com.example.quan_ly_don_hang;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.List;
+
+import com.example.quan_ly_don_hang.data.DBManager;
 import com.example.quan_ly_don_hang.model.SanPham;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -16,6 +30,14 @@ public class EditSPActivity extends Activity {
 SanPham sanpham;
 EditText edtten, edtsoluong, edtgia;
 ImageView imgAvatar;
+DBManager db;
+Spinner spn;
+String danhmucchon;
+ImageButton btncamera, btnfolder;
+Button btnedit, btndel;
+int a;
+int REQUEST_CODE_CAMERA = 454;
+int REQUEST_CODE_FOLDER = 352;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,15 +45,100 @@ ImageView imgAvatar;
 		edtten = (EditText)findViewById(R.id.txtTenSP_EditSP);
 		edtsoluong = (EditText)findViewById(R.id.txtSoluong_ThemSP_EditSP);
 		edtgia = (EditText)findViewById(R.id.txtGiaca_ThemSP_EditSP);
+		spn = (Spinner)findViewById(R.id.spinnerDM_EditSP);
+		btncamera = (ImageButton)findViewById(R.id.ibnCamera_EditSP);
+		btnfolder = (ImageButton)findViewById(R.id.ibnFolder_EditSP);
+		btnedit = (Button)findViewById(R.id.btnEdit_ThemSP_EditSP);
+		btndel = (Button)findViewById(R.id.btnDelete_EditSP);
 		imgAvatar = (ImageView)findViewById(R.id.imgHinh_EditSP);
+		db = new DBManager(this);
 		getData();
+		loadSpinner();
+		danhmucchon = spn.getSelectedItem().toString().trim();
+		btnedit.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				db.EditSanPham(a, edtten.getText().toString(), danhmucchon, Integer.parseInt(edtsoluong.getText().toString()), Integer.parseInt(edtgia.getText().toString()), ConverttoArrayByte(imgAvatar));
+				Intent inten = new Intent(getApplicationContext(), QLSanPhamActivity.class);
+				startActivity(inten);
+			}
+		});
+		btndel.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+			db.DeleteSanPham(a);
+			Intent intentt = new Intent(getApplicationContext(), QLSanPhamActivity.class);
+			startActivity(intentt);
+			}
+		});
+		
+		btncamera.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				startActivityForResult(i, REQUEST_CODE_CAMERA);
+			}
+		});
+		btnfolder.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent in = new Intent(Intent.ACTION_PICK);
+				in.setType("image/*");
+				startActivityForResult(in, REQUEST_CODE_FOLDER);
+			}
+		});
 		
 	}
-	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		if (requestCode==REQUEST_CODE_CAMERA&&resultCode==RESULT_OK & data!=null){
+			Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+			imgAvatar.setImageBitmap(bitmap);
+			
+		}
+		if (requestCode==REQUEST_CODE_FOLDER&&resultCode==RESULT_OK & data!=null){
+			Uri uri = data.getData();
+			try {
+				InputStream ipstream = getContentResolver().openInputStream(uri);
+				Bitmap bitmap = BitmapFactory.decodeStream(ipstream);
+				imgAvatar.setImageBitmap(bitmap);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+	public void loadSpinner(){
+		
+		List<String> danhmuc  = db.getAllDanhMuc();
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, danhmuc);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+		
+		spn.setAdapter(dataAdapter);
+	}
+	public byte[] ConverttoArrayByte(ImageView img){
+		BitmapDrawable bitmapDrawable = (BitmapDrawable) img.getDrawable();
+		Bitmap bitmap = bitmapDrawable.getBitmap();
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+		return stream.toByteArray();
+	}
 	public void getData(){
 		if (getIntent().getExtras()!=null){
 			sanpham = (SanPham) getIntent().getSerializableExtra("Edit");
-			int a = sanpham.getmMaSP();
+			a = sanpham.getmMaSP();
 			byte[] hinhanh = sanpham.getmAnh();
 			Bitmap bitmap = BitmapFactory.decodeByteArray(hinhanh, 0, hinhanh.length);
 			imgAvatar.setImageBitmap(bitmap);

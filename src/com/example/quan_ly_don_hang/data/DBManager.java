@@ -219,6 +219,29 @@ db.close();
 		statement.execute();
 		db.close();
 	}
+	public void EditSanPham(int maSp, String Ten, String Danhmuc, int Soluong,
+			int Giaban, byte[] Hinh){
+		
+		SQLiteDatabase db = getWritableDatabase();
+		String sql = "UPDATE SanPham SET Tensanpham = ? , Danhmuc = ? , Soluong = ?, Giaban = ?, Anh = ? Where _id = ? ";
+		SQLiteStatement statement = db.compileStatement(sql);
+		statement.clearBindings();
+		statement.bindString(1, Ten);
+		statement.bindString(2, Danhmuc);
+		statement.bindLong(3, Soluong);
+		statement.bindLong(4, Giaban);
+		statement.bindBlob(5, Hinh);
+		statement.bindLong(6, maSp);
+		statement.execute();
+		db.close();
+	}
+	public void DeleteSanPham (int i){
+		;
+		SQLiteDatabase database = this.getWritableDatabase();
+		 
+		 database.delete(TABLE_SANPHAM, ID + " = " + i, null);		
+		 db.close();
+	}
 	public String ngaythang(){
 		
 		Calendar cal = Calendar.getInstance();

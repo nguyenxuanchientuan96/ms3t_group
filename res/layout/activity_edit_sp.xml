@@ -95,12 +95,26 @@
             android:layout_weight="5.82"
             android:src="@drawable/picture" />
 
-        <Button
-            android:id="@+id/btnEdit_ThemSP_EditSP"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="5.82"
-            android:text="Sửa" />
+            android:layout_weight="5.82" >
+
+            <Button
+                android:id="@+id/btnEdit_ThemSP_EditSP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5.82"
+                android:text="Sửa" />
+
+            <Button
+                android:id="@+id/btnDelete_EditSP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5.82"
+                android:text="Xóa" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

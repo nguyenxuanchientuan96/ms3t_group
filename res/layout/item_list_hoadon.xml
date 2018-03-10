@@ -15,16 +15,34 @@
             android:src="@drawable/bill" />
 
         <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="          " />
+
+        <TextView
             android:id="@+id/tv_idhd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1" />
 
         <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="          " />
+
+        <TextView
             android:id="@+id/tv_ngayhd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ngaythang" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="          " />
 
         <TextView
             android:id="@+id/tv_thanhtienhd"

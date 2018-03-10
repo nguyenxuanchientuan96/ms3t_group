@@ -34,6 +34,7 @@ public class TaoDonHangActivity extends Activity {
 	Integer sosanpham;
 	String ngay;
 	int[] slsp;
+	String [] tenspchon;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class TaoDonHangActivity extends Activity {
 		display();
 		sosanpham = lv.getAdapter().getCount();
 		slsp  = new int[sosanpham];
+		tenspchon = new String [sosanpham];
 		ngay = dbmanager.ngaythang();
 		//txttest.setText(dbmanager.ngaythang());
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -57,10 +59,13 @@ public class TaoDonHangActivity extends Activity {
 				// TODO Auto-generated method stub
 				TextView textview = (TextView)arg1.findViewById(R.id.lv_GiaSP);
 				TextView textview2= (TextView)arg1.findViewById(R.id.lv_Soluong);
+				TextView textview3= (TextView)arg1.findViewById(R.id.lv_TenSP);
+				String ten = textview3.getText().toString().trim();
 				int text = Integer.parseInt(textview.getText().toString());
 				int text2 = Integer.parseInt(textview2.getText().toString());
 				tongtien = tongtien + text;
 				solanchon(arg2);
+				tenchon(arg2, ten);
 				text2 = text2 - slsp[arg2];
 				String sl = String.valueOf(slsp[arg2]);
 				Toast.makeText(getApplicationContext(), sl, Toast.LENGTH_SHORT).show();
@@ -75,12 +80,18 @@ Purchase.setOnClickListener(new View.OnClickListener() {
 		// TODO Auto-generated method stub
 	
 	dbmanager.ThemHoaDon(ngay, tongtien);
+	for (int i=0;i<sosanpham;i++){
+	dbmanager.UpdateSanPham(slsp[i], tenspchon[i]);
+	}
 	}
 });
 		
 		
 	}
-	
+	public String[] tenchon (int i, String ten) {
+		tenspchon[i]=ten;
+		return tenspchon;
+	}
 	public int[] solanchon (int i){
 		
 		slsp[i]=slsp[i]+1;

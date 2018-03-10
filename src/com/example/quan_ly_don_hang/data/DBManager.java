@@ -211,7 +211,7 @@ db.close();
 	}
 	public void UpdateSanPham(int Soluong, String Tensp){
 		SQLiteDatabase db = getWritableDatabase();
-		String sql  = "UPDATE SanPham SET Soluong=? Where Tensanpham =?";
+		String sql  = "UPDATE SanPham SET Soluong= Soluong - ? Where Tensanpham =?";
 		SQLiteStatement statement = db.compileStatement(sql);
 		statement.clearBindings();
 		statement.bindLong(1, Soluong);

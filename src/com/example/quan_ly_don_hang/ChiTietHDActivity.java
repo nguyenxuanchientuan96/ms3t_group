@@ -1,16 +1,53 @@
 package com.example.quan_ly_don_hang;
 
+import java.util.ArrayList;
+
+import com.example.quan_ly_don_hang.adapter.CTHoaDonAdapter;
+import com.example.quan_ly_don_hang.data.DBManager;
+import com.example.quan_ly_don_hang.model.ChiTietHoaDon;
+import com.example.quan_ly_don_hang.model.HoaDon;
+
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 public class ChiTietHDActivity extends Activity {
-
+	ArrayList<ChiTietHoaDon> arrCTHD = new ArrayList<ChiTietHoaDon>();
+	CTHoaDonAdapter adapter;
+	Cursor cursor;
+	DBManager db;
+	ListView lv;
+	String mhd;
+HoaDon hoadon;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chi_tiet_hd);
+		lv = (ListView)findViewById(R.id.lv_cthd);
+		db = new DBManager(this);
+		getData();
+		display();
+		
+	}
+	public void getData(){
+		if (getIntent().getExtras()!=null){
+			hoadon = (HoaDon) getIntent().getSerializableExtra("CTHD");
+			mhd = String.valueOf(hoadon.getmNgay());
+		}
+	}
+	public void display(){
+		
+		cursor = db.getAllCTHoaDon(mhd);
+		if (adapter==null){
+			while (cursor.moveToNext()){
+				arrCTHD.add(new ChiTietHoaDon(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), cursor.getInt(4), cursor.getInt(5)));
+			}
+			adapter = new CTHoaDonAdapter(this, R.layout.item_list_cthoadon, arrCTHD);
+			lv.setAdapter(adapter);
+		}
 	}
 
 	@Override

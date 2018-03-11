@@ -192,7 +192,7 @@ public class DBManager extends SQLiteOpenHelper {
 		Cursor cursor = db.rawQuery("SELECT * FROM HoaDon;", null);
 		return cursor;
 	}
-	public Cursor getAllCTHoaDon(int i) {
+	public Cursor getAllCTHoaDon(String i) {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM CTHoaDon Where MaHD = "+ i, null);
 		return cursor;
@@ -270,7 +270,7 @@ db.close();
 	public String ngaythang(){
 		
 		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy_HH:mm:ss");
+		SimpleDateFormat df = new SimpleDateFormat("ddMMyyyyHHmmss");
 		String date = df.format(cal.getTime());
 		return date;
 	}

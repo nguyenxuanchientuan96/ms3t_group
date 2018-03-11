@@ -2,7 +2,7 @@ package com.example.quan_ly_don_hang.model;
 
 import java.io.Serializable;
 
-public class HoaDon {
+public class HoaDon implements Serializable {
 private int mMaHD;
 private String mNgay;
 private int mThanhtien;

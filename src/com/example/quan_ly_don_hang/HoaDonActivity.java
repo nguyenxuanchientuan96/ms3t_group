@@ -9,10 +9,14 @@ import com.example.quan_ly_don_hang.model.HoaDon;
 import com.example.quan_ly_don_hang.model.SanPham;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class HoaDonActivity extends Activity {
@@ -29,6 +33,16 @@ public class HoaDonActivity extends Activity {
 		lv = (ListView)findViewById(R.id.lv_hd);
 		db = new DBManager(this);
 		display();
+		lv.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Intent in = new Intent(HoaDonActivity.this, ChiTietHDActivity.class);
+				in.putExtra("CTHD", adapter.getItem(arg2));
+				startActivity(in);
+			}
+		});
 	}
 public void display(){
 	

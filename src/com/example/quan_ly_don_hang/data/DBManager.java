@@ -192,6 +192,11 @@ public class DBManager extends SQLiteOpenHelper {
 		Cursor cursor = db.rawQuery("SELECT * FROM HoaDon;", null);
 		return cursor;
 	}
+	public Cursor Saphethang() {
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery("select Tensanpham, Soluong from SanPham order by Soluong;", null);
+		return cursor;
+	}
 	public Cursor getAllCTHoaDon(String i) {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM CTHoaDon Where MaHD = "+ i, null);

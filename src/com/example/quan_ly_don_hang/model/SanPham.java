@@ -14,6 +14,13 @@ public class SanPham implements Serializable{
 	public SanPham() {
 		super();
 	}
+	
+	public SanPham(String mTenSP, int mSoLuong) {
+		super();
+		this.mTenSP = mTenSP;
+		this.mSoLuong = mSoLuong;
+	}
+
 	public SanPham(String mTenSP, String mDanhMuc, int mSoLuong, int mGiaban,
 			byte[] mAnh) {
 		super();

@@ -19,5 +19,6 @@
     <string name="title_activity_hoa_don">HoaDonActivity</string>
     <string name="title_activity_edit_sp">EditSPActivity</string>
     <string name="title_activity_chi_tiet_hd">ChiTietHDActivity</string>
+    <string name="title_activity_spsaphet">SPsaphetActivity</string>
 
 </resources>

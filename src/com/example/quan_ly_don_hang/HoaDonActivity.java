@@ -33,12 +33,16 @@ public class HoaDonActivity extends Activity {
 public void display(){
 	
 	cursor = db.getAllHoaDon();
+	if (adapter==null){
 	while (cursor.moveToNext()){
 		arrayHoadon.add(new HoaDon(cursor.getInt(0), cursor.getString(1), cursor.getInt(2)));
 	}
 adapter = new HoaDonAdapter(this, R.layout.item_list_hoadon, arrayHoadon);
+lv.setAdapter(adapter);
+	}else {
 adapter.notifyDataSetChanged();
-	lv.setAdapter(adapter);
+	}
+	
 }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

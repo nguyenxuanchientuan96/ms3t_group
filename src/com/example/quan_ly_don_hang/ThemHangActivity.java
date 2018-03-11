@@ -27,6 +27,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class ThemHangActivity extends Activity {
 	
@@ -65,7 +66,11 @@ public class ThemHangActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				db.ThemSanPham(edtTenSP.getText().toString(), danhmucchon, Integer.parseInt(edtSoluong.getText().toString()), Integer.parseInt(edtGiaca.getText().toString()), ConverttoArrayByte(imgHinh));
+				Toast.makeText(ThemHangActivity.this, "Thêm thành công!", Toast.LENGTH_SHORT).show();
+				Intent i = new Intent(getApplicationContext(), QLSanPhamActivity.class);
+				startActivity(i);
 			}
+			
 		});
 		
 		ibnCam.setOnClickListener(new View.OnClickListener() {

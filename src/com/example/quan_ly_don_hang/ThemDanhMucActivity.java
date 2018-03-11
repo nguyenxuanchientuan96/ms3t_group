@@ -4,12 +4,14 @@ import com.example.quan_ly_don_hang.data.DBManager;
 import com.example.quan_ly_don_hang.model.DanhMuc;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ThemDanhMucActivity extends Activity {
 	DBManager dbManager;
@@ -32,7 +34,11 @@ public class ThemDanhMucActivity extends Activity {
 				if (dm != null ){
 					dbManager.addDanhmuc(dm);
 				}
+				Toast.makeText(ThemDanhMucActivity.this, "Thêm thành công!", Toast.LENGTH_SHORT).show();
+				Intent i = new Intent(getApplicationContext(), DanhMucActivity.class);
+				startActivity(i);
 			}
+			
 		});
 	}
 

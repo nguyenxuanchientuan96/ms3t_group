@@ -26,6 +26,7 @@ public class DBManager extends SQLiteOpenHelper {
 	private static final String TABLE_DANHMUC = "DanhMuc";
 	private static final String TABLE_GIAMGIA = "GiamGia";
 	private static final String TABLE_HOADON = "HoaDon";
+	private static final String TABLE_CHITIETHOADON = "CTHoaDon";
 	// Các cột chung
 	public static final String ID = "_id";
 	// Các cột bảng user
@@ -48,6 +49,9 @@ public class DBManager extends SQLiteOpenHelper {
 	//Cac cot hoa don
 	public static final String NGAY = "Ngay";
 	public static final String TONGTIEN = "Tongtien";
+	//Các cột chi tiết hóa đơn
+	public static final String MaHD = "MaHD";
+
 	
 	
 	// Một số thứ linh tinh
@@ -62,16 +66,16 @@ public class DBManager extends SQLiteOpenHelper {
 			+ " (" + ID + " integer primary key, " + TEN_SANPHAM
 			+ " TEXT UNIQUE, " + DANH_MUC + " TEXT, " + SO_LUONG + " integer, "
 			+ GIA_BAN + " integer, " + ANH + " BLOB)";
-	private String SQLQuery_CREATE_GIAMGIA = "CREATE TABLE " + TABLE_GIAMGIA
+	/*private String SQLQuery_CREATE_GIAMGIA = "CREATE TABLE " + TABLE_GIAMGIA
 			+ " (" + ID + " integer primary key, " + MA_GIAM_GIA
-			+ " TEXT UNIQUE, " + GIA_TRI + " integer)";
+			+ " TEXT UNIQUE, " + GIA_TRI + " integer)";*/
 	private String SQLQuery_CREATE_DANHMUC = "CREATE TABLE " + TABLE_DANHMUC
 			+ " (" + ID + " integer primary key, " + TEN_DANHMUC
 			+ " TEXT UNIQUE)";
 	private String SQLQuery_CREATE_HOADON = "CREATE TABLE " + TABLE_HOADON
-			+ " (" + ID + "  integer primary key," + NGAY
+			+ " (" + ID + "  integer primary key, " + NGAY
 			+ " TEXT , " + TONGTIEN + " integer)";
-
+	private String SQLQuery_CREATE_CTHOADON="CREATE TABLE CTHoaDon (_id integer primary key, MaHD TEXT, SanPham TEXT UNIQUE, SoLuong integer, DonGia integer, Tien integer)";
 	public DBManager(Context context) {
 		super(context, DATABASE_NAME, null, VERSION);
 		// TODO Auto-generated constructor stub
@@ -86,9 +90,10 @@ public class DBManager extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		db.execSQL(SQLQuery_CREATE_TBLUSER);
 		db.execSQL(SQLQuery_CREATE_TBLSANPHAM);
-		db.execSQL(SQLQuery_CREATE_GIAMGIA);
+		//db.execSQL(SQLQuery_CREATE_GIAMGIA);
 		db.execSQL(SQLQuery_CREATE_DANHMUC);
 		db.execSQL(SQLQuery_CREATE_HOADON);
+		db.execSQL(SQLQuery_CREATE_CTHOADON);
 		
 	}
 
@@ -97,9 +102,11 @@ public class DBManager extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_DANHMUC);
-		db.execSQL("DROP TABLE IF EXISTS " + TABLE_GIAMGIA);
+		//db.execSQL("DROP TABLE IF EXISTS " + TABLE_GIAMGIA);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_SANPHAM);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_HOADON);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHITIETHOADON);
+		
 
 		this.onCreate(db);
 	}
@@ -209,6 +216,19 @@ db.close();
 		statement.executeInsert();
 		db.close();
 	}
+	public void ThemCTHoaDon (String mahd, String sanpham, int soluong, int dongia, int tien){
+		SQLiteDatabase db = getWritableDatabase();
+		String sql = "Insert into CTHoaDon values (null, ?, ?, ?, ?, ?)";
+		SQLiteStatement statement = db.compileStatement(sql);
+		statement.clearBindings();
+		statement.bindString(1, mahd);
+		statement.bindString(2, sanpham);
+		statement.bindLong(3, soluong);
+		statement.bindLong(4, dongia);
+		statement.bindLong(5, tien);
+		statement.executeInsert();
+		db.close();
+	}
 	public void UpdateSanPham(int Soluong, String Tensp){
 		SQLiteDatabase db = getWritableDatabase();
 		String sql  = "UPDATE SanPham SET Soluong= Soluong - ? Where Tensanpham =?";
@@ -245,7 +265,7 @@ db.close();
 	public String ngaythang(){
 		
 		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy_HH:mm:ss");
 		String date = df.format(cal.getTime());
 		return date;
 	}

@@ -61,14 +61,18 @@ DBManager dbManager;
 		adapter = new SimpleCursorAdapter(DanhMucActivity.this, R.layout.item_list_danhmuc, cursor, from, to, 0);
 		dbManager.CloseDB();
 		*/
+		if(adapter==null){
 		while (cursor.moveToNext()){
 			
 			arrDM.add(new DanhMuc(cursor.getInt(0), cursor.getString(1)));
 		}
 		adapter = new DanhMucAdapter(this, R.layout.item_list_danhmuc, arrDM);
-		adapter.notifyDataSetChanged();
-		
 		lv.setAdapter(adapter);
+		}else{
+		adapter.notifyDataSetChanged();
+		}
+		
+		
 	}
 	
 

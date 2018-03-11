@@ -37,6 +37,8 @@ public class TaoDonHangActivity extends Activity {
 	String ngay;
 	int[] slsp;
 	String[] tenspchon;
+	int[]dongia;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class TaoDonHangActivity extends Activity {
 		sosanpham = lv.getAdapter().getCount();
 		slsp = new int[sosanpham];
 		tenspchon = new String[sosanpham];
+		dongia = new int[sosanpham];
 		ngay = dbmanager.ngaythang();
 		// txttest.setText(dbmanager.ngaythang());
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -65,16 +68,19 @@ public class TaoDonHangActivity extends Activity {
 						.findViewById(R.id.tv_tensp_list);
 				String ten = textview3.getText().toString().trim();
 				int text = Integer.parseInt(textview.getText().toString());
-				int text2 = Integer.parseInt(textview2.getText().toString());
+				int soluongsp = Integer.parseInt(textview2.getText().toString());
 				tongtien = tongtien + text;
+				
 				solanchon(arg2);
 				tenchon(arg2, ten);
-				text2 = text2 - slsp[arg2];
+				dongiasp(arg2, text);
+				int sll = soluongsp - 1;
+				
 				String sl = String.valueOf(slsp[arg2]);
 				Toast.makeText(getApplicationContext(), sl, Toast.LENGTH_SHORT)
 						.show();
 				txttest.setText(String.valueOf(tongtien));
-				textview2.setText(String.valueOf(text2));
+				textview2.setText(String.valueOf(sll));
 			}
 		});
 		Purchase.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +99,8 @@ public class TaoDonHangActivity extends Activity {
 						dbmanager.ThemHoaDon(ngay, tongtien);
 						for (int i = 0; i < sosanpham; i++) {
 							dbmanager.UpdateSanPham(slsp[i], tenspchon[i]);
-							
+							dbmanager.ThemCTHoaDon(ngay, tenspchon[i], slsp[i], dongia[i], slsp[i]*dongia[i]);
+							Toast.makeText(TaoDonHangActivity.this, "Giao dịch thành công!", Toast.LENGTH_SHORT).show();
 						}
 					}
 				}).setNegativeButton("Hủy", null).show();
@@ -113,8 +120,13 @@ public class TaoDonHangActivity extends Activity {
 		slsp[i] = slsp[i] + 1;
 		return slsp;
 
-	}
 
+	}
+public int[] dongiasp(int a, int b){
+	dongia[a] = b;
+	return dongia;
+	
+}
 	public void display() {
 		cursor = dbmanager.getAllSanPham();
 		while (cursor.moveToNext()) {

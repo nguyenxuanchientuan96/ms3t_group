@@ -80,6 +80,10 @@
             android:name=".EditSPActivity"
             android:label="@string/title_activity_edit_sp" >
         </activity>
+        <activity
+            android:name=".ChiTietHDActivity"
+            android:label="@string/title_activity_chi_tiet_hd" >
+        </activity>
     </application>
 
 </manifest>

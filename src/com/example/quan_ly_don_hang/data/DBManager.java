@@ -75,7 +75,7 @@ public class DBManager extends SQLiteOpenHelper {
 	private String SQLQuery_CREATE_HOADON = "CREATE TABLE " + TABLE_HOADON
 			+ " (" + ID + "  integer primary key, " + NGAY
 			+ " TEXT , " + TONGTIEN + " integer)";
-	private String SQLQuery_CREATE_CTHOADON="CREATE TABLE CTHoaDon (_id integer primary key, MaHD TEXT, SanPham TEXT UNIQUE, SoLuong integer, DonGia integer, Tien integer)";
+	private String SQLQuery_CREATE_CTHOADON="CREATE TABLE CTHoaDon (_id integer primary key, MaHD TEXT, SanPham TEXT, SoLuong integer, DonGia integer, Tien integer)";
 	public DBManager(Context context) {
 		super(context, DATABASE_NAME, null, VERSION);
 		// TODO Auto-generated constructor stub
@@ -190,6 +190,11 @@ public class DBManager extends SQLiteOpenHelper {
 	public Cursor getAllHoaDon() {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM HoaDon;", null);
+		return cursor;
+	}
+	public Cursor getAllCTHoaDon(int i) {
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT * FROM CTHoaDon Where MaHD = "+ i, null);
 		return cursor;
 	}
 	public void ThemSanPham(String Ten, String Danhmuc, int Soluong,
